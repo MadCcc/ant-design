@@ -1,8 +1,9 @@
 {
-  "name": "@MadCcc/antd",
+  "name": "@madccc/antd",
   "version": "5.0.0-alpha.0",
   "description": "An enterprise-class UI design language and React components implementation",
   "title": "Ant Design",
+  "private": false,
   "keywords": [
     "ant",
     "component",
@@ -14,22 +15,10 @@
     "react-component",
     "ui"
   ],
-  "homepage": "https://ant.design",
-  "bugs": {
-    "url": "https://github.com/ant-design/ant-design/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ant-design/ant-design"
-  },
   "license": "MIT",
   "contributors": [
     "ant"
   ],
-  "funding": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/ant-design"
-  },
   "files": [
     "dist",
     "lib",
@@ -322,8 +311,5 @@
       "path": "./dist/antd.variable.min.css",
       "maxSize": "67 kB"
     }
-  ],
-  "tnpm": {
-    "mode": "npm"
-  }
+  ]
 }
