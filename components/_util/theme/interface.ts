@@ -1,6 +1,7 @@
 import type * as React from 'react';
 import type { ComponentToken as AlertComponentToken } from '../../alert/style';
 import type { ComponentToken as AnchorComponentToken } from '../../anchor/style';
+import type { ComponentToken as AvatarComponentToken } from '../../avatar/style';
 import type { ComponentToken as BackTopComponentToken } from '../../back-top/style';
 import type { ComponentToken as ButtonComponentToken } from '../../button/style';
 import type { ComponentToken as CalendarComponentToken } from '../../calendar/style';
@@ -20,11 +21,13 @@ import type { ComponentToken as MessageComponentToken } from '../../message/styl
 import type { ComponentToken as ModalComponentToken } from '../../modal/style';
 import type { ComponentToken as NotificationComponentToken } from '../../notification/style';
 import type { ComponentToken as PopconfirmComponentToken } from '../../popconfirm/style';
+import type { ComponentToken as PopoverComponentToken } from '../../popover/style';
 import type { ComponentToken as ProgressComponentToken } from '../../progress/style';
 import type { ComponentToken as SegmentedComponentToken } from '../../segmented/style';
 import type { ComponentToken as SelectComponentToken } from '../../select/style';
 import type { ComponentToken as SliderComponentToken } from '../../slider/style';
 import type { ComponentToken as SpaceComponentToken } from '../../space/style';
+import type { ComponentToken as SpinComponentToken } from '../../spin/style';
 import type { ComponentToken as TimelineComponentToken } from '../../timeline/style';
 import type { ComponentToken as TypographyComponentToken } from '../../typography/style';
 import type { ComponentToken as UploadComponentToken } from '../../upload/style';
@@ -62,7 +65,7 @@ export interface OverrideToken {
   Affix?: {};
   Alert?: AlertComponentToken;
   Anchor?: AnchorComponentToken;
-  Avatar?: {};
+  Avatar?: AvatarComponentToken;
   BackTop?: BackTopComponentToken;
   Badge?: {};
   Button?: ButtonComponentToken;
@@ -87,7 +90,7 @@ export interface OverrideToken {
   Mentions?: MentionsComponentToken;
   Notification?: NotificationComponentToken;
   Pagination?: {};
-  Popover?: {};
+  Popover?: PopoverComponentToken;
   Popconfirm?: PopconfirmComponentToken;
   Rate?: {};
   Result?: {};
@@ -95,7 +98,7 @@ export interface OverrideToken {
   Select?: SelectComponentToken;
   Skeleton?: {};
   Slider?: SliderComponentToken;
-  Spin?: {};
+  Spin?: SpinComponentToken;
   Statistic?: {};
   Switch?: {};
   Tag?: {};
