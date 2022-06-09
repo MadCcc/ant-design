@@ -24,12 +24,19 @@ import type { ComponentToken as NotificationComponentToken } from '../../notific
 import type { ComponentToken as PopconfirmComponentToken } from '../../popconfirm/style';
 import type { ComponentToken as PopoverComponentToken } from '../../popover/style';
 import type { ComponentToken as ProgressComponentToken } from '../../progress/style';
+import type { ComponentToken as RadioComponentToken } from '../../radio/style';
+import type { ComponentToken as ResultComponentToken } from '../../result/style';
 import type { ComponentToken as SegmentedComponentToken } from '../../segmented/style';
 import type { ComponentToken as SelectComponentToken } from '../../select/style';
+import type { ComponentToken as SkeletonComponentToken } from '../../skeleton/style';
 import type { ComponentToken as SliderComponentToken } from '../../slider/style';
 import type { ComponentToken as SpaceComponentToken } from '../../space/style';
 import type { ComponentToken as SpinComponentToken } from '../../spin/style';
+import type { ComponentToken as StepsComponentToken } from '../../steps/style';
+import type { ComponentToken as TabsComponentToken } from '../../tabs/style';
 import type { ComponentToken as TimelineComponentToken } from '../../timeline/style';
+import type { ComponentToken as TooltipComponentToken } from '../../tooltip/style';
+import type { ComponentToken as TransferComponentToken } from '../../transfer/style';
 import type { ComponentToken as TypographyComponentToken } from '../../typography/style';
 import type { ComponentToken as UploadComponentToken } from '../../upload/style';
 
@@ -60,7 +67,9 @@ export type ColorPalettes = {
 };
 
 export interface OverrideToken {
-  derivative?: Partial<DerivativeToken & AliasToken>;
+  derivative?: Partial<DerivativeToken>;
+  /** @private Internal Usage */
+  alias?: Partial<AliasToken>;
 
   // Customize component
   Affix?: {};
@@ -94,10 +103,11 @@ export interface OverrideToken {
   Popover?: PopoverComponentToken;
   Popconfirm?: PopconfirmComponentToken;
   Rate?: {};
-  Result?: {};
+  Radio?: RadioComponentToken;
+  Result?: ResultComponentToken;
   Segmented?: SegmentedComponentToken;
   Select?: SelectComponentToken;
-  Skeleton?: {};
+  Skeleton?: SkeletonComponentToken;
   Slider?: SliderComponentToken;
   Spin?: SpinComponentToken;
   Statistic?: {};
@@ -107,23 +117,23 @@ export interface OverrideToken {
   TreeSelect?: {};
   Typography?: TypographyComponentToken;
   Timeline?: TimelineComponentToken;
-  Tabs?: {};
+  Transfer?: TransferComponentToken;
+  Tabs?: TabsComponentToken;
   Calendar?: CalendarComponentToken;
   Card?: {};
-  Steps?: {};
+  Steps?: StepsComponentToken;
   Menu?: MenuComponentToken;
   Modal?: ModalComponentToken;
   Message?: MessageComponentToken;
   Upload?: UploadComponentToken;
-  Tooltip?: {};
+  Tooltip?: TooltipComponentToken;
   Table?: {};
   Space?: SpaceComponentToken;
   Progress?: ProgressComponentToken;
-  Transfer?: {};
 }
 
 /** Final token which contains the components level override */
-export type GlobalToken = AliasToken & Omit<OverrideToken, 'derivative'>;
+export type GlobalToken = AliasToken & Omit<OverrideToken, 'derivative' | 'alias'>;
 
 // ======================================================================
 // ==                            Seed Token                            ==
@@ -316,7 +326,9 @@ export interface AliasToken extends Omit<DerivativeToken, OmitDerivativeKey> {
   controlOutlineWidth: number;
   controlItemBgHover: string; // Note. It also is a color
   controlItemBgActive: string; // Note. It also is a color
+  controlItemBgActiveHover: string; // Note. It also is a color
   controlInteractiveSize: number;
+  controlItemBgActiveDisabled: string; // Note. It also is a color
 
   // Color
   colorBorder: string;
@@ -341,6 +353,7 @@ export interface AliasToken extends Omit<DerivativeToken, OmitDerivativeKey> {
   colorBgComponent: string;
   colorBgComponentSecondary: string;
   colorBgComponentDisabled: string;
+  colorBgContainerWeak: string;
 
   // =============== Legacy: should be remove ===============
   colorLoadingOpacity: number;

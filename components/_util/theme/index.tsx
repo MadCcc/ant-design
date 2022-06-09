@@ -16,6 +16,7 @@ import { clearFix, operationUnit, resetComponent, resetIcon, roundedArrow } from
 import formatToken from './util/alias';
 import type { FullToken } from './util/genComponentStyleHook';
 import genComponentStyleHook from './util/genComponentStyleHook';
+import getArrowStyle from './util/placementArrow';
 import statisticToken, { merge as mergeToken, statistic } from './util/statistic';
 
 export {
@@ -23,6 +24,7 @@ export {
   resetIcon,
   clearFix,
   roundedArrow,
+  getArrowStyle,
   operationUnit,
   // colors
   PresetColors,

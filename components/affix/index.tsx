@@ -1,19 +1,18 @@
-import * as React from 'react';
 import classNames from 'classnames';
-import omit from 'rc-util/lib/omit';
 import ResizeObserver from 'rc-resize-observer';
+import omit from 'rc-util/lib/omit';
+import * as React from 'react';
 import type { ConfigConsumerProps } from '../config-provider';
 import { ConfigContext } from '../config-provider';
 import { throttleByAnimationFrameDecorator } from '../_util/throttleByAnimationFrame';
-
+import useStyle from './style';
 import {
   addObserveTarget,
-  removeObserveTarget,
-  getTargetRect,
-  getFixedTop,
   getFixedBottom,
+  getFixedTop,
+  getTargetRect,
+  removeObserveTarget,
 } from './utils';
-import useStyle from './style';
 
 function getDefaultTarget() {
   return typeof window !== 'undefined' ? window : null;
@@ -300,6 +299,8 @@ class Affix extends React.Component<InternalAffixProps, AffixState> {
     );
   }
 }
+// just use in test
+export type InternalAffixClass = Affix;
 
 const AffixFC = React.forwardRef<Affix, AffixProps>((props, ref) => {
   const { prefixCls: customizePrefixCls } = props;
