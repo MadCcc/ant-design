@@ -1,13 +1,13 @@
+import EyeOutlined from '@ant-design/icons/EyeOutlined';
+import classNames from 'classnames';
+import RcImage, { ImageProps } from 'rc-image';
 import * as React from 'react';
 import { useContext } from 'react';
-import EyeOutlined from '@ant-design/icons/EyeOutlined';
-import RcImage, { ImageProps } from 'rc-image';
-import classNames from 'classnames';
-import defaultLocale from '../locale/en_US';
-import PreviewGroup, { icons } from './PreviewGroup';
 import { ConfigContext } from '../config-provider';
+import defaultLocale from '../locale/en_US';
 import { getTransitionName } from '../_util/motion';
 // CSSINJS
+import PreviewGroup, { icons } from './PreviewGroup';
 import useStyle from './style';
 
 export interface CompositionImage<P> extends React.FC<P> {
@@ -20,11 +20,15 @@ const Image: CompositionImage<ImageProps> = ({
   rootClassName,
   ...otherProps
 }) => {
-  const { getPrefixCls } = useContext(ConfigContext);
+  const {
+    getPrefixCls,
+    locale: contextLocale = defaultLocale,
+    getPopupContainer: getContextPopupContainer,
+  } = useContext(ConfigContext);
+
   const prefixCls = getPrefixCls('image', customizePrefixCls);
   const rootPrefixCls = getPrefixCls();
 
-  const { locale: contextLocale = defaultLocale } = useContext(ConfigContext);
   const imageLocale = contextLocale.Image || defaultLocale.Image;
   // Style
   const [wrapSSR, hashId] = useStyle(prefixCls);
@@ -35,7 +39,7 @@ const Image: CompositionImage<ImageProps> = ({
       return preview;
     }
     const _preview = typeof preview === 'object' ? preview : {};
-
+    const { getContainer, ...restPreviewProps } = _preview;
     return {
       mask: (
         <div className={`${prefixCls}-mask-info`}>
@@ -44,7 +48,8 @@ const Image: CompositionImage<ImageProps> = ({
         </div>
       ),
       icons,
-      ..._preview,
+      ...restPreviewProps,
+      getContainer: getContainer || getContextPopupContainer,
       transitionName: getTransitionName(rootPrefixCls, 'zoom', _preview.transitionName),
       maskTransitionName: getTransitionName(rootPrefixCls, 'fade', _preview.maskTransitionName),
     };

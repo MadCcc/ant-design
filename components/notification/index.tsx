@@ -224,13 +224,13 @@ const baseStaticMethods: {
   config: any;
   useNotification: typeof useNotification;
   /** @private Internal Component. Do not use in your production. */
-  _DoNotUseOrYouWillBeFired: typeof PurePanel;
+  _InternalPanelDoNotUseOrYouWillBeFired: typeof PurePanel;
 } = {
   open,
   destroy,
   config: setNotificationGlobalConfig,
   useNotification,
-  _DoNotUseOrYouWillBeFired: PurePanel,
+  _InternalPanelDoNotUseOrYouWillBeFired: PurePanel,
 };
 
 const staticMethods: typeof baseStaticMethods & Record<MethodType, (config: ArgsProps) => void> =

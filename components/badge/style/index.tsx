@@ -195,7 +195,7 @@ const genSharedBadgeStyle: GenerateStyle<BadgeToken> = (token: BadgeToken): CSSO
           },
         },
         [`${componentCls}-status-default`]: {
-          backgroundColor: token.colorPlaceholder,
+          backgroundColor: token.colorTextPlaceholder,
         },
 
         [`${componentCls}-status-error`]: {
