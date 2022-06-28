@@ -1,9 +1,9 @@
-import * as React from 'react';
 import classNames from 'classnames';
-import type { SizeType } from '../config-provider/SizeContext';
+import * as React from 'react';
 import { ConfigContext } from '../config-provider';
+import type { SizeType } from '../config-provider/SizeContext';
+import { useToken } from '../theme';
 import warning from '../_util/warning';
-import { useToken } from '../_util/theme';
 
 export interface ButtonGroupProps {
   size?: SizeType;

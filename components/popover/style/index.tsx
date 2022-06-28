@@ -1,13 +1,13 @@
 // deps-lint-skip-all
 import { initZoomMotion } from '../../style/motion';
-import type { FullToken, GenerateStyle, PresetColorType } from '../../_util/theme';
+import type { FullToken, GenerateStyle, PresetColorType } from '../../theme';
 import {
   genComponentStyleHook,
   getArrowStyle,
   mergeToken,
   PresetColors,
   resetComponent,
-} from '../../_util/theme';
+} from '../../theme';
 
 export interface ComponentToken {
   zIndexPopup: number;
@@ -93,7 +93,7 @@ const genBaseStyle: GenerateStyle<PopoverToken> = token => {
     },
 
     // Arrow Style
-    getArrowStyle(token, popoverBg),
+    getArrowStyle(token, token.colorBgElevated),
   ];
 };
 

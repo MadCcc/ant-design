@@ -5,8 +5,9 @@ import { withConfigConsumer } from '../config-provider/context';
 import Skeleton from '../skeleton';
 import type Countdown from './Countdown';
 import StatisticNumber from './Number';
-import useStyle from './style';
 import type { FormatConfig, valueType } from './utils';
+
+import useStyle from './style';
 
 interface StatisticComponent {
   Countdown: typeof Countdown;

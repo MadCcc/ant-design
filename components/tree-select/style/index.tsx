@@ -1,16 +1,8 @@
-// import '../../style/index.less';
-// import './index.less';
-
-// // style dependencies
-// // deps-lint-skip: tree, form
-// import '../../select/style';
-// import '../../empty/style';
-
 // deps-lint-skip-all
 import { getStyle as getCheckboxStyle } from '../../checkbox/style';
+import type { AliasToken, FullToken, GenerateStyle } from '../../theme';
+import { genComponentStyleHook, mergeToken } from '../../theme';
 import { genTreeStyle } from '../../tree/style';
-import type { AliasToken, FullToken, GenerateStyle } from '../../_util/theme';
-import { genComponentStyleHook, mergeToken } from '../../_util/theme';
 
 interface TreeSelectToken extends FullToken<'TreeSelect'> {
   treePrefixCls: string;
@@ -34,7 +26,7 @@ const genBaseStyle: GenerateStyle<TreeSelectToken> = token => {
         // ====================== Tree ======================
         genTreeStyle(
           treePrefixCls,
-          mergeToken<AliasToken>(token, { colorBgComponent: colorBgElevated }),
+          mergeToken<AliasToken>(token, { colorBgContainer: colorBgElevated }),
         ),
         {
           [treeCls]: {

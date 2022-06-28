@@ -3,6 +3,7 @@ import FolderOpenOutlined from '@ant-design/icons/FolderOpenOutlined';
 import FolderOutlined from '@ant-design/icons/FolderOutlined';
 import classNames from 'classnames';
 import type RcTree from 'rc-tree';
+import type { BasicDataNode } from 'rc-tree';
 import type { DataNode, EventDataNode, Key } from 'rc-tree/lib/interface';
 import { conductExpandParent } from 'rc-tree/lib/util';
 import { convertDataToEntities, convertTreeToData } from 'rc-tree/lib/utils/treeUtil';
@@ -14,9 +15,16 @@ import { calcRangeKeys, convertDirectoryKeysToNodes } from './utils/dictUtil';
 
 export type ExpandAction = false | 'click' | 'doubleClick';
 
-export interface DirectoryTreeProps extends TreeProps {
+export interface DirectoryTreeProps<T extends BasicDataNode = DataNode> extends TreeProps<T> {
   expandAction?: ExpandAction;
 }
+
+type DirectoryTreeCompoundedComponent = (<T extends BasicDataNode | DataNode = DataNode>(
+  props: React.PropsWithChildren<DirectoryTreeProps<T>> & { ref?: React.Ref<RcTree> },
+) => React.ReactElement) & {
+  defaultProps: Partial<React.PropsWithChildren<DirectoryTreeProps<any>>>;
+  displayName?: string;
+};
 
 export interface DirectoryTreeState {
   expandedKeys?: Key[];
@@ -190,8 +198,13 @@ const DirectoryTree: React.ForwardRefRenderFunction<RcTree, DirectoryTreeProps> 
   );
 };
 
-const ForwardDirectoryTree = React.forwardRef(DirectoryTree);
-ForwardDirectoryTree.displayName = 'DirectoryTree';
+const ForwardDirectoryTree = React.forwardRef(
+  DirectoryTree,
+) as unknown as DirectoryTreeCompoundedComponent;
+
+if (process.env.NODE_ENV !== 'production') {
+  ForwardDirectoryTree.displayName = 'DirectoryTree';
+}
 
 ForwardDirectoryTree.defaultProps = {
   showIcon: true,

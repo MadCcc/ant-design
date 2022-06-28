@@ -1,13 +1,13 @@
 // deps-lint-skip-all
-import type { FullToken, GenerateStyle } from '../../_util/theme';
-import { genComponentStyleHook, operationUnit } from '../../_util/theme';
+import type { FullToken, GenerateStyle } from '../../theme';
+import { genComponentStyleHook, operationUnit } from '../../theme';
 import {
-  getTitleStyles,
-  getResetStyles,
-  getLinkStyles,
-  getEditableStyles,
   getCopiableStyles,
+  getEditableStyles,
   getEllipsisStyles,
+  getLinkStyles,
+  getResetStyles,
+  getTitleStyles,
 } from './mixins';
 
 /** Component only token. Which will handle additional calculation of alias token */

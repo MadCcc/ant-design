@@ -1,9 +1,8 @@
 // deps-lint-skip-all
 import type { CSSObject } from '@ant-design/cssinjs';
-import { TinyColor } from '@ctrl/tinycolor';
 
-import type { GenerateStyle, FullToken } from '../../_util/theme';
-import { resetComponent, genComponentStyleHook, mergeToken, clearFix } from '../../_util/theme';
+import type { FullToken, GenerateStyle } from '../../theme';
+import { clearFix, genComponentStyleHook, mergeToken, resetComponent } from '../../theme';
 
 interface CardToken extends FullToken<'Card'> {
   cardShadow: string;
@@ -112,7 +111,7 @@ const genCardActionsStyle: GenerateStyle<CardToken> = (token): CSSObject => {
     margin: 0,
     padding: 0,
     listStyle: 'none',
-    background: token.colorBgComponent,
+    background: token.colorBgContainer,
     borderTop: `${token.controlLineWidth}px ${token.controlLineType} ${colorBorderSecondary}`,
     display: 'flex',
     ...clearFix(),
@@ -194,12 +193,12 @@ const genCardMetaStyle: GenerateStyle<CardToken> = (token): CSSObject => ({
 
 // ============================== Inner ==============================
 const genCardTypeInnerStyle: GenerateStyle<CardToken> = (token): CSSObject => {
-  const { componentCls, cardPaddingBase, colorBgComponentSecondary, cardInnerHeadPadding } = token;
+  const { componentCls, cardPaddingBase, colorBgContainerSecondary, cardInnerHeadPadding } = token;
 
   return {
     [`${componentCls}-head`]: {
       padding: `0 ${cardPaddingBase}px`,
-      background: colorBgComponentSecondary,
+      background: colorBgContainerSecondary,
 
       '&-title': {
         padding: `${cardInnerHeadPadding}px 0`,
@@ -246,7 +245,7 @@ const genCardStyle: GenerateStyle<CardToken> = (token): CSSObject => {
       ...resetComponent(token),
 
       position: 'relative',
-      background: token.colorBgComponent,
+      background: token.colorBgContainer,
       borderRadius: token.radiusBase,
 
       [`${componentCls}-head`]: genCardHeadStyle(token),
@@ -376,11 +375,7 @@ export default genComponentStyleHook('Card', token => {
   const cardHeadPadding = token.padding;
 
   const cardToken = mergeToken<CardToken>(token, {
-    cardShadow: `
-      0 1px 2px -2px ${new TinyColor('rgba(0, 0, 0, 0.16)').toRgbString()},
-      0 3px 6px 0 ${new TinyColor('rgba(0, 0, 0, 0.12)').toRgbString()},
-      0 5px 12px 4px ${new TinyColor('rgba(0, 0, 0, 0.09)').toRgbString()}
-    `, // FIXME: shadow
+    cardShadow: token.boxShadowCard,
     cardHeadHeight: token.fontSizeLG + cardHeadPadding * 2,
     cardHeadPadding,
     cardPaddingBase: token.paddingLG,

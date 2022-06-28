@@ -1,8 +1,7 @@
 // deps-lint-skip-all
 import type { CSSObject } from '@ant-design/cssinjs';
-import { TinyColor } from '@ctrl/tinycolor';
-import type { FullToken, GenerateStyle } from '../../_util/theme';
-import { genComponentStyleHook, mergeToken, resetComponent } from '../../_util/theme';
+import type { FullToken, GenerateStyle } from '../../theme';
+import { genComponentStyleHook, mergeToken, resetComponent } from '../../theme';
 
 export interface ComponentToken {
   zIndexPopup: number;
@@ -18,10 +17,6 @@ interface TabsToken extends FullToken<'Tabs'> {
   tabsCardHeadBackground: string;
   dropdownEdgeChildVerticalPadding: number;
   tabsNavWrapPseudoWidth: number;
-  tabsOverflowShadowLeft: string;
-  tabsOverflowShadowRight: string;
-  tabsOverflowShadowTop: string;
-  tabsOverflowShadowBottom: string;
   tabsActiveTextShadow: string;
   tabsDropdownHeight: number;
   tabsDropdownWidth: number;
@@ -48,7 +43,7 @@ const genCardStyle: GenerateStyle<TabsToken> = (token: TabsToken): CSSObject => 
 
         [`${componentCls}-tab-active`]: {
           color: token.colorPrimary,
-          background: token.colorBgComponent,
+          background: token.colorBgContainer,
         },
 
         [`${componentCls}-ink-bar`]: {
@@ -75,7 +70,7 @@ const genCardStyle: GenerateStyle<TabsToken> = (token: TabsToken): CSSObject => 
           },
 
           [`${componentCls}-tab-active`]: {
-            borderBottomColor: token.colorBgComponent,
+            borderBottomColor: token.colorBgContainer,
           },
         },
       },
@@ -87,7 +82,7 @@ const genCardStyle: GenerateStyle<TabsToken> = (token: TabsToken): CSSObject => 
           },
 
           [`${componentCls}-tab-active`]: {
-            borderTopColor: token.colorBgComponent,
+            borderTopColor: token.colorBgContainer,
           },
         },
       },
@@ -113,7 +108,7 @@ const genCardStyle: GenerateStyle<TabsToken> = (token: TabsToken): CSSObject => 
           [`${componentCls}-tab-active`]: {
             borderRightColor: {
               _skip_check_: true,
-              value: token.colorBgComponent,
+              value: token.colorBgContainer,
             },
           },
         },
@@ -131,7 +126,7 @@ const genCardStyle: GenerateStyle<TabsToken> = (token: TabsToken): CSSObject => 
           [`${componentCls}-tab-active`]: {
             borderLeftColor: {
               _skip_check_: true,
-              value: token.colorBgComponent,
+              value: token.colorBgContainer,
             },
           },
         },
@@ -170,7 +165,7 @@ const genDropdownStyle: GenerateStyle<TabsToken> = (token: TabsToken): CSSObject
           value: 'left',
         },
         listStyleType: 'none',
-        backgroundColor: token.colorBgComponent,
+        backgroundColor: token.colorBgContainer,
         backgroundClip: 'padding-box',
         borderRadius: token.radiusBase,
         outline: 'none',
@@ -276,7 +271,7 @@ const genPositionStyle: GenerateStyle<TabsToken> = (token: TabsToken): CSSObject
               _skip_check_: true,
               value: 0,
             },
-            boxShadow: token.tabsOverflowShadowLeft,
+            boxShadow: token.boxShadowTabsOverflowLeft,
           },
 
           '&::after': {
@@ -284,7 +279,7 @@ const genPositionStyle: GenerateStyle<TabsToken> = (token: TabsToken): CSSObject
               _skip_check_: true,
               value: 0,
             },
-            boxShadow: token.tabsOverflowShadowRight,
+            boxShadow: token.boxShadowTabsOverflowRight,
           },
 
           [`&${componentCls}-nav-wrap-ping-left::before`]: {
@@ -364,12 +359,12 @@ const genPositionStyle: GenerateStyle<TabsToken> = (token: TabsToken): CSSObject
 
           '&::before': {
             top: 0,
-            boxShadow: token.tabsOverflowShadowTop,
+            boxShadow: token.boxShadowTabsOverflowTop,
           },
 
           '&::after': {
             bottom: 0,
-            boxShadow: token.tabsOverflowShadowBottom,
+            boxShadow: token.boxShadowTabsOverflowBottom,
           },
 
           [`&${componentCls}-nav-wrap-ping-top::before`]: {
@@ -846,7 +841,6 @@ const genTabsStyle: GenerateStyle<TabsToken> = (token: TabsToken): CSSObject => 
 export default genComponentStyleHook(
   'Tabs',
   token => {
-    const boxShadowColor = new TinyColor('rgba(0, 0, 0, 0.15)').setAlpha(0.08).toRgbString();
     const tabsCardHeight = token.controlHeightLG;
 
     const tabsToken = mergeToken<TabsToken>(token, {
@@ -860,12 +854,8 @@ export default genComponentStyleHook(
       tabsCardHeight,
       tabsCardGutter: token.marginXXS / 2,
       tabsHorizontalGutter: token.marginXL,
-      tabsCardHeadBackground: token.colorBgComponentSecondary,
+      tabsCardHeadBackground: token.colorBgContainerSecondary,
       dropdownEdgeChildVerticalPadding: token.paddingXXS,
-      tabsOverflowShadowLeft: `inset 10px 0 8px -8px ${boxShadowColor}`,
-      tabsOverflowShadowRight: `inset -10px 0 8px -8px ${boxShadowColor}`,
-      tabsOverflowShadowTop: `inset 0 10px 8px -8px ${boxShadowColor}`,
-      tabsOverflowShadowBottom: `inset 0 -10px 8px -8px ${boxShadowColor}`,
       tabsActiveTextShadow: '0 0 0.25px currentcolor',
       tabsDropdownHeight: 200,
       tabsDropdownWidth: 120,

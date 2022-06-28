@@ -1,10 +1,10 @@
-import dayjs from 'dayjs';
-import glob from 'glob';
 // Reference: https://github.com/ant-design/ant-design/pull/24003#discussion_r427267386
 // eslint-disable-next-line import/no-unresolved
+import { createCache, extractStyle, StyleProvider } from '@ant-design/cssinjs';
+import dayjs from 'dayjs';
+import glob from 'glob';
 import { configureToMatchImageSnapshot } from 'jest-image-snapshot';
 import MockDate from 'mockdate';
-import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
 const toMatchImageSnapshot = configureToMatchImageSnapshot({
@@ -31,10 +31,23 @@ export default function imageTest(component: React.ReactElement) {
     page.on('request', onRequestHandle);
     await page.goto(`file://${process.cwd()}/tests/index.html`);
     await page.addStyleTag({ path: `${process.cwd()}/dist/antd.css` });
-    const html = ReactDOMServer.renderToString(component);
-    await page.evaluate(innerHTML => {
-      document.querySelector('#root')!.innerHTML = innerHTML;
-    }, html);
+
+    const cache = createCache();
+    const html = ReactDOMServer.renderToString(
+      <StyleProvider cache={cache}>{component}</StyleProvider>,
+    );
+    const styleStr = extractStyle(cache);
+
+    await page.evaluate(
+      (innerHTML, ssrStyle) => {
+        document.querySelector('#root')!.innerHTML = innerHTML;
+
+        const head = document.querySelector('head')!;
+        head.innerHTML += ssrStyle;
+      },
+      html,
+      styleStr,
+    );
 
     const image = await page.screenshot();
 

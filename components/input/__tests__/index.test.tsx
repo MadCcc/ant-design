@@ -4,8 +4,7 @@ import type { InputProps, InputRef } from '..';
 import Input from '..';
 import mountTest from '../../../tests/shared/mountTest';
 import rtlTest from '../../../tests/shared/rtlTest';
-import { fireEvent, render } from '../../../tests/utils';
-// eslint-disable-next-line import/no-unresolved
+
 import Form from '../../form';
 
 describe('Input', () => {

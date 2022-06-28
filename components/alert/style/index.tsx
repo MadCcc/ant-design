@@ -1,7 +1,7 @@
 // deps-lint-skip-all
 import type { CSSInterpolation, CSSObject } from '@ant-design/cssinjs';
-import type { FullToken, GenerateStyle } from '../../_util/theme';
-import { genComponentStyleHook, mergeToken, resetComponent } from '../../_util/theme';
+import type { FullToken, GenerateStyle } from '../../theme';
+import { genComponentStyleHook, mergeToken, resetComponent } from '../../theme';
 
 export interface ComponentToken {}
 
@@ -128,41 +128,41 @@ export const genTypeStyle: GenerateStyle<AlertToken> = (token: AlertToken): CSSO
     componentCls,
 
     colorSuccess,
-    colorSuccessSecondary,
-    colorBgSuccess,
+    colorSuccessBorder,
+    colorSuccessBg,
 
     colorWarning,
-    colorWarningSecondary,
-    colorBgWarning,
+    colorWarningBorder,
+    colorWarningBg,
 
     colorError,
-    colorErrorSecondary,
-    colorBgError,
+    colorErrorBorder,
+    colorErrorBg,
 
     colorInfo,
-    colorInfoSecondary,
-    colorBgInfo,
+    colorInfoBorder,
+    colorInfoBg,
   } = token;
 
   return {
     [componentCls]: {
       '&-success': genAlertTypeStyle(
-        colorBgSuccess,
-        colorSuccessSecondary,
+        colorSuccessBg,
+        colorSuccessBorder,
         colorSuccess,
         token,
         componentCls,
       ),
-      '&-info': genAlertTypeStyle(colorBgInfo, colorInfoSecondary, colorInfo, token, componentCls),
+      '&-info': genAlertTypeStyle(colorInfoBg, colorInfoBorder, colorInfo, token, componentCls),
       '&-warning': genAlertTypeStyle(
-        colorBgWarning,
-        colorWarningSecondary,
+        colorWarningBg,
+        colorWarningBorder,
         colorWarning,
         token,
         componentCls,
       ),
       '&-error': {
-        ...genAlertTypeStyle(colorBgError, colorErrorSecondary, colorError, token, componentCls),
+        ...genAlertTypeStyle(colorErrorBg, colorErrorBorder, colorError, token, componentCls),
         [`${componentCls}-description > pre`]: {
           margin: 0,
           padding: 0,

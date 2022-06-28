@@ -1,7 +1,7 @@
 import { TinyColor } from '@ctrl/tinycolor';
 import type { UploadToken } from '.';
-import type { GenerateStyle } from '../../_util/theme';
-import { clearFix } from '../../_util/theme';
+import type { GenerateStyle } from '../../theme';
+import { clearFix } from '../../theme';
 
 const genPictureStyle: GenerateStyle<UploadToken> = token => {
   const { componentCls, iconCls, uploadThumbnailSize, uploadProgressOffset } = token;
@@ -59,7 +59,7 @@ const genPictureStyle: GenerateStyle<UploadToken> = token => {
           // Adjust the color of the error icon : https://github.com/ant-design/ant-design/pull/24160
           [`${itemCls}-thumbnail ${iconCls}`]: {
             [`svg path[fill='#e6f7ff']`]: {
-              fill: token.colorBgError,
+              fill: token.colorErrorBg,
             },
             [`svg path[fill='#1890ff']`]: {
               fill: token.colorError,
@@ -99,7 +99,7 @@ const genPictureCardStyle: GenerateStyle<UploadToken> = token => {
         marginBottom: token.marginXS,
         textAlign: 'center',
         verticalAlign: 'top',
-        backgroundColor: token.colorBgComponentSecondary,
+        backgroundColor: token.colorBgContainerSecondary,
         border: `${token.controlLineWidth}px dashed ${token.colorBorder}`,
         borderRadius: token.radiusBase,
         cursor: 'pointer',
@@ -206,7 +206,7 @@ const genPictureCardStyle: GenerateStyle<UploadToken> = token => {
 
         [`${itemCls}-uploading`]: {
           [`&${itemCls}`]: {
-            backgroundColor: token.colorBgComponentSecondary,
+            backgroundColor: token.colorBgContainerSecondary,
           },
 
           [`&::before, ${iconCls}-eye, ${iconCls}-download, ${iconCls}-delete`]: {

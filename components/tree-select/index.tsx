@@ -46,6 +46,7 @@ export interface TreeSelectProps<
     | 'getInputElement'
     | 'backfill'
     | 'treeLine'
+    | 'switcherIcon'
   > {
   suffixIcon?: React.ReactNode;
   size?: SizeType;
@@ -54,7 +55,7 @@ export interface TreeSelectProps<
   bordered?: boolean;
   treeLine?: TreeProps['showLine'];
   status?: InputStatus;
-  switcherIcon?: SwitcherIcon;
+  switcherIcon?: SwitcherIcon | RcTreeSelectProps<ValueType, OptionType>['switcherIcon'];
 }
 
 const InternalTreeSelect = <OptionType extends BaseOptionType | DefaultOptionType = BaseOptionType>(
